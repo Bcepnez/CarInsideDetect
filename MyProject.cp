@@ -1,4 +1,4 @@
-#line 1 "C:/Users/BenzRST/Desktop/lab7_2017/Project/ProjectTest.c"
+#line 1 "C:/Users/BenzRST/Desktop/Project/MyProject.c"
 int count=0;
 int main(void)
 {
@@ -22,6 +22,7 @@ int main(void)
 
  }
  else{
+ int x;
  int tmp = 0;
  int PIR = 0;
  int CO = 0;
@@ -33,11 +34,19 @@ int main(void)
  if(PINA == 0x01 ){ CO =1 ; }
  if(PINA == 0x02 ){ PIR =1; }
  if(PINA == 0x03 ){ CO =1; PIR =1; }
- if (tmp+CO+PIR > 0 && count < 100)
+ if (tmp+CO+PIR > 0 && !(PINA&0x10))
  {
- if(PIR) PORTE=0x0D;
- else PORTE=0x05;
+ x=0x04;
+ if(count < 1000) {
+ x|=0x01;
  count++;
+ }
+ else {
+ x&=0x0C;
+ }
+ if(PIR && !(PINA&0x10)) x|=0x0C;
+ else x&=0x07;
+ PORTE=x;
  }
  else
  {
