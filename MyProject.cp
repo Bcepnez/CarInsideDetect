@@ -30,10 +30,9 @@ int main(void)
  while((ADCSRA&(1<<ADIF))==0);
  PORTD =ADCL;
  PORTB =ADCH;
- if(PORTD >= 0x81 ){ tmp = 1; }
- if(PINA == 0x01 ){ CO =1 ; }
- if(PINA == 0x02 ){ PIR =1; }
- if(PINA == 0x03 ){ CO =1; PIR =1; }
+ if(PORTD >= 0x95 ){ tmp = 1; }
+ if(PINA & 0x01 ){ CO =1 ; }
+ if(PINA & 0x02 ){ PIR =1; }
  if (tmp+CO+PIR > 0 && !(PINA&0x10))
  {
  x=0x04;

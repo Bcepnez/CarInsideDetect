@@ -46,9 +46,9 @@ L_main0:
 	LDI        R17, 0
 	CP         R16, R18
 	CPC        R17, R19
-	BRLT       L__main28
+	BRLT       L__main27
 	JMP        L_main3
-L__main28:
+L__main27:
 ;MyProject.c,17 :: 		PORTE=0x02;
 	LDI        R27, 2
 	OUT        PORTE+0, R27
@@ -88,9 +88,9 @@ L_main5:
 	IN         R16, ADCSRA+0
 	ANDI       R16, 16
 	CPI        R16, 0
-	BREQ       L__main29
+	BREQ       L__main28
 	JMP        L_main6
-L__main29:
+L__main28:
 	JMP        L_main5
 L_main6:
 ;MyProject.c,30 :: 		PORTD =ADCL;
@@ -99,55 +99,36 @@ L_main6:
 ;MyProject.c,31 :: 		PORTB =ADCH;
 	IN         R16, ADCH+0
 	OUT        PORTB+0, R16
-;MyProject.c,32 :: 		if(PORTD >= 0x81 ){ tmp = 1;  }
+;MyProject.c,32 :: 		if(PORTD >= 0x95  ){ tmp = 1;  }
 	IN         R16, PORTD+0
-	CPI        R16, 129
-	BRSH       L__main30
+	CPI        R16, 149
+	BRSH       L__main29
 	JMP        L_main7
-L__main30:
+L__main29:
 	LDI        R27, 1
 	STD        Y+2, R27
 	LDI        R27, 0
 	STD        Y+3, R27
 L_main7:
-;MyProject.c,33 :: 		if(PINA == 0x01 ){ CO =1  ;   }
+;MyProject.c,33 :: 		if(PINA & 0x01 ){ CO =1  ;   }
 	IN         R16, PINA+0
-	CPI        R16, 1
-	BREQ       L__main31
+	SBRS       R16, 0
 	JMP        L_main8
-L__main31:
 	LDI        R27, 1
 	STD        Y+6, R27
 	LDI        R27, 0
 	STD        Y+7, R27
 L_main8:
-;MyProject.c,34 :: 		if(PINA == 0x02 ){ PIR =1;   }
+;MyProject.c,34 :: 		if(PINA & 0x02 ){ PIR =1;   }
 	IN         R16, PINA+0
-	CPI        R16, 2
-	BREQ       L__main32
+	SBRS       R16, 1
 	JMP        L_main9
-L__main32:
 	LDI        R27, 1
 	STD        Y+4, R27
 	LDI        R27, 0
 	STD        Y+5, R27
 L_main9:
-;MyProject.c,35 :: 		if(PINA == 0x03 ){ CO =1; PIR =1;   }
-	IN         R16, PINA+0
-	CPI        R16, 3
-	BREQ       L__main33
-	JMP        L_main10
-L__main33:
-	LDI        R27, 1
-	STD        Y+6, R27
-	LDI        R27, 0
-	STD        Y+7, R27
-	LDI        R27, 1
-	STD        Y+4, R27
-	LDI        R27, 0
-	STD        Y+5, R27
-L_main10:
-;MyProject.c,36 :: 		if  (tmp+CO+PIR > 0 && !(PINA&0x10))
+;MyProject.c,35 :: 		if  (tmp+CO+PIR > 0 && !(PINA&0x10))
 	LDD        R18, Y+2
 	LDD        R19, Y+3
 	LDD        R16, Y+6
@@ -162,104 +143,104 @@ L_main10:
 	LDI        R17, 0
 	CP         R16, R18
 	CPC        R17, R19
-	BRLT       L__main34
-	JMP        L__main26
-L__main34:
+	BRLT       L__main30
+	JMP        L__main25
+L__main30:
 	IN         R16, PINA+0
 	SBRC       R16, 4
-	JMP        L__main25
-L__main22:
-;MyProject.c,38 :: 		x=0x04;
+	JMP        L__main24
+L__main21:
+;MyProject.c,37 :: 		x=0x04;
 	LDI        R27, 4
 	STD        Y+0, R27
 	LDI        R27, 0
 	STD        Y+1, R27
-;MyProject.c,39 :: 		if(count < 1000) {
+;MyProject.c,38 :: 		if(count < 1000) {
 	LDS        R18, _count+0
 	LDS        R19, _count+1
 	LDI        R16, 232
 	LDI        R17, 3
 	CP         R18, R16
 	CPC        R19, R17
-	BRLT       L__main35
-	JMP        L_main14
-L__main35:
-;MyProject.c,40 :: 		x|=0x01;
+	BRLT       L__main31
+	JMP        L_main13
+L__main31:
+;MyProject.c,39 :: 		x|=0x01;
 	LDD        R16, Y+0
 	LDD        R17, Y+1
 	ORI        R16, 1
 	ORI        R17, 0
 	STD        Y+0, R16
 	STD        Y+1, R17
-;MyProject.c,41 :: 		count++;
+;MyProject.c,40 :: 		count++;
 	LDS        R16, _count+0
 	LDS        R17, _count+1
 	SUBI       R16, 255
 	SBCI       R17, 255
 	STS        _count+0, R16
 	STS        _count+1, R17
-;MyProject.c,42 :: 		}
-	JMP        L_main15
-L_main14:
-;MyProject.c,44 :: 		x&=0x0C;
+;MyProject.c,41 :: 		}
+	JMP        L_main14
+L_main13:
+;MyProject.c,43 :: 		x&=0x0C;
 	LDD        R16, Y+0
 	LDD        R17, Y+1
 	ANDI       R16, 12
 	ANDI       R17, 0
 	STD        Y+0, R16
 	STD        Y+1, R17
-;MyProject.c,45 :: 		}
-L_main15:
-;MyProject.c,46 :: 		if(PIR && !(PINA&0x10)) x|=0x0C;
+;MyProject.c,44 :: 		}
+L_main14:
+;MyProject.c,45 :: 		if(PIR && !(PINA&0x10)) x|=0x0C;
 	LDD        R16, Y+4
 	LDD        R17, Y+5
 	MOV        R27, R16
 	OR         R27, R17
-	BRNE       L__main36
-	JMP        L__main24
-L__main36:
+	BRNE       L__main32
+	JMP        L__main23
+L__main32:
 	IN         R16, PINA+0
 	SBRC       R16, 4
-	JMP        L__main23
-L__main21:
+	JMP        L__main22
+L__main20:
 	LDD        R16, Y+0
 	LDD        R17, Y+1
 	ORI        R16, 12
 	ORI        R17, 0
 	STD        Y+0, R16
 	STD        Y+1, R17
-	JMP        L_main19
-L__main24:
+	JMP        L_main18
 L__main23:
-;MyProject.c,47 :: 		else x&=0x07;
+L__main22:
+;MyProject.c,46 :: 		else x&=0x07;
 	LDD        R16, Y+0
 	LDD        R17, Y+1
 	ANDI       R16, 7
 	ANDI       R17, 0
 	STD        Y+0, R16
 	STD        Y+1, R17
-L_main19:
-;MyProject.c,48 :: 		PORTE=x;
+L_main18:
+;MyProject.c,47 :: 		PORTE=x;
 	LDD        R16, Y+0
 	OUT        PORTE+0, R16
-;MyProject.c,49 :: 		}
-	JMP        L_main20
-;MyProject.c,36 :: 		if  (tmp+CO+PIR > 0 && !(PINA&0x10))
-L__main26:
+;MyProject.c,48 :: 		}
+	JMP        L_main19
+;MyProject.c,35 :: 		if  (tmp+CO+PIR > 0 && !(PINA&0x10))
 L__main25:
-;MyProject.c,52 :: 		PORTE = 0x00;
+L__main24:
+;MyProject.c,51 :: 		PORTE = 0x00;
 	LDI        R27, 0
 	OUT        PORTE+0, R27
+;MyProject.c,52 :: 		}
+L_main19:
 ;MyProject.c,53 :: 		}
-L_main20:
-;MyProject.c,54 :: 		}
 L_main4:
-;MyProject.c,55 :: 		PORTC = count;
+;MyProject.c,54 :: 		PORTC = count;
 	LDS        R16, _count+0
 	OUT        PORTC+0, R16
-;MyProject.c,56 :: 		}
+;MyProject.c,55 :: 		}
 	JMP        L_main0
-;MyProject.c,58 :: 		}
+;MyProject.c,57 :: 		}
 L_end_main:
 L__main_end_loop:
 	JMP        L__main_end_loop

@@ -8,12 +8,12 @@ warning: 0	1502	Specified include path does not exist: 'C:\Users\BenzRST\Desktop
 warning: 0	1502	Specified include path does not exist: 'C:\Users\BenzRST\Desktop\Documents\Mikroelektronika\mikroC PRO for AVR\Packages\FT810\Uses'	 
 warning: 0	1502	Specified include path does not exist: 'C:\Users\BenzRST\Desktop\Documents\Mikroelektronika\mikroC PRO for AVR\Packages\FT812\Uses'	 
 diagnostics: 0	122	Compilation Started	MyProject.c
-diagnostics: 58	123	Compiled Successfully	MyProject.c
-diagnostics: 0	127	All files Compiled in 62 ms	 
+diagnostics: 57	123	Compiled Successfully	MyProject.c
+diagnostics: 0	127	All files Compiled in 47 ms	 
 hint: 0	1144	Used RX (bytes): 14 (44%)   Free RX (bytes): 18 (56%)	Used RX (bytes): 14 (44%)   Free RX (bytes): 18 (56%)
 hint: 0	1144	Static RAM (bytes): 2   Dynamic RAM (bytes): 4094	Static RAM (bytes): 2   Dynamic RAM (bytes): 4094
-hint: 0	1144	Used ROM (bytes): 548 (0%)  Free ROM (bytes): 122332 (100%)	Used ROM (bytes): 548 (0%)  Free ROM (bytes): 122332 (100%)
+hint: 0	1144	Used ROM (bytes): 526 (0%)  Free ROM (bytes): 122354 (100%)	Used ROM (bytes): 526 (0%)  Free ROM (bytes): 122354 (100%)
 diagnostics: 0	125	Project Linked Successfully	MyProject.mcpav
 diagnostics: 0	128	Linked in 547 ms	 
 diagnostics: 0	129	Project 'MyProject.mcpav' completed: 734 ms	 
-diagnostics: 0	103	Finished successfully: 04 Dec 2017, 15:02:05	MyProject.mcpav
+diagnostics: 0	103	Finished successfully: 09 Dec 2017, 16:03:31	MyProject.mcpav
